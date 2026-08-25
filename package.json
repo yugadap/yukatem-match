@@ -1,0 +1,9 @@
+{
+  "name": "yukatem-match",
+  "private": true,
+  "version": "1.0.0",
+  "description": "육아템 월드컵 유모차 편",
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
