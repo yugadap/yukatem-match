@@ -3,588 +3,651 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>육아템 월드컵 — 유모차 편</title>
+<title>육아답 프로젝트 - 육아템 매치 (유모차 편)</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
-  :root{
-    --paper:#FFFCF3;
-    --dotgrid:#EAE2CC;
-    --ink:#221D17;
-    --ink-soft:#5A5347;
-    --pink:#FFC9D6;
-    --pink-d:#F79CB4;
-    --blue:#BFE3FF;
-    --blue-d:#8FCBFF;
-    --mint:#C9F2D8;
-    --mint-d:#8FE0B4;
-    --yellow:#FFE79A;
-    --yellow-d:#FFD65C;
-    --lav:#E4D8FF;
-    --lav-d:#C9B6FF;
-    --card:#FFFFFF;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background-color:var(--paper);
-    background-image:radial-gradient(circle, var(--dotgrid) 1.3px, transparent 1.3px);
-    background-size:24px 24px;
-    color:var(--ink);
-    font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;
-    min-height:100vh;
-    -webkit-font-smoothing:antialiased;
-  }
-  .app{max-width:720px;margin:0 auto;padding:30px 18px 70px;min-height:100vh;}
+:root{
+--paper:#FFFCF3;
+--dotgrid:#EAE2CC;
+--ink:#221D17;
+--ink-soft:#5A5347;
+--pink:#FFC9D6;
+--pink-d:#F79CB4;
+--blue:#BFE3FF;
+--blue-d:#8FCBFF;
+--mint:#C9F2D8;
+--mint-d:#8FE0B4;
+--yellow:#FFE79A;
+--yellow-d:#FFD65C;
+--lav:#E4D8FF;
+--lav-d:#C9B6FF;
+--card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+background-color:var(--paper);
+background-image:radial-gradient(circle, var(--dotgrid) 1.3px, transparent 1.3px);
+background-size:24px 24px;
+color:var(--ink);
+font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;
+min-height:100vh;
+-webkit-font-smoothing:antialiased;
+}
+.app{max-width:720px;margin:0 auto;padding:30px 18px 70px;min-height:100vh;}
 
-  h1,h2,.font-display{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-weight:700;}
-  .font-pen{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;}
+h1,h2,.font-display{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-weight:700;}
+.font-pen{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;}
 
-  /* ---- brand ---- */
-  .brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
-  .brand svg{width:34px;height:34px;flex:none;}
-  .brand-name{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;font-size:18px;font-weight:700;}
+/* ---- brand ---- */
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.brand svg{width:34px;height:34px;flex:none;}
+.brand-name{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;font-size:18px;font-weight:700;}
 
-  .screen{display:none;}
-  .screen.active{display:block; animation:fadeUp .45s ease both;}
-  @keyframes fadeUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+.screen{display:none;}
+.screen.active{display:block; animation:fadeUp .45s ease both;}
+@keyframes fadeUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
 
-  /* ---- sketch base ---- */
-  .sketch{position:relative; border:2.5px solid var(--ink); z-index:0; background:var(--card);}
-  .sketch::before{content:'';position:absolute;inset:-5px;border:2px solid var(--ink);opacity:.28;border-radius:inherit;z-index:-1;}
-  .wob-1{border-radius:255px 18px 225px 30px/28px 225px 30px 255px;}
-  .wob-2{border-radius:22px 240px 24px 235px/235px 24px 240px 22px;}
-  .wob-3{border-radius:235px 26px 235px 26px/26px 235px 26px 235px;}
-  .tilt-1{transform:rotate(-1.1deg);}
-  .tilt-2{transform:rotate(0.9deg);}
-  .tilt-3{transform:rotate(-0.5deg);}
+/* ---- sketch base ---- */
+.sketch{position:relative; border:2.5px solid var(--ink); z-index:0; background:var(--card);}
+.sketch::before{content:'';position:absolute;inset:-5px;border:2px solid var(--ink);opacity:.28;border-radius:inherit;z-index:-1;}
+.wob-1{border-radius:255px 18px 225px 30px/28px 225px 30px 255px;}
+.wob-2{border-radius:22px 240px 24px 235px/235px 24px 240px 22px;}
+.wob-3{border-radius:235px 26px 235px 26px/26px 235px 26px 235px;}
+.tilt-1{transform:rotate(-1.1deg);}
+.tilt-2{transform:rotate(0.9deg);}
+.tilt-3{transform:rotate(-0.5deg);}
 
-  .sticker-tag{
-    display:inline-block; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700;
-    background:var(--pink); border:2px solid var(--ink); border-radius:255px 20px 225px 20px/20px 225px 20px 255px;
-    padding:3px 14px; transform:rotate(-2deg); margin-bottom:14px;
-  }
+.sticker-tag{
+display:inline-block; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700;
+background:var(--pink); border:2px solid var(--ink); border-radius:255px 20px 225px 20px/20px 225px 20px 255px;
+padding:3px 14px; transform:rotate(-2deg); margin-bottom:14px;
+}
 
-  h1{font-size:clamp(28px,6.4vw,42px); line-height:1.28; margin:0 0 14px;}
-  h1 .hl{color:var(--ink); text-decoration:underline; text-decoration-style:wavy; text-decoration-color:var(--pink-d); text-decoration-thickness:3px; text-underline-offset:5px;}
-  p.lede{font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:52ch; margin:0 0 26px;}
+h1{font-size:clamp(28px,6.4vw,42px); line-height:1.28; margin:0 0 14px;}
+h1 .hl{color:var(--ink); text-decoration:underline; text-decoration-style:wavy; text-decoration-color:var(--pink-d); text-decoration-thickness:3px; text-underline-offset:5px;}
+p.lede{font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:52ch; margin:0 0 26px;}
 
-  .mascot-row{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
-  .mascot-row svg{width:64px;height:64px;}
-  .mascot-row .star{width:20px;height:20px;}
+.mascot-row{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+.mascot-row svg{width:64px;height:64px;}
+.mascot-row .star{width:20px;height:20px;}
 
-  /* ---- fields / buttons ---- */
-  .field{margin-bottom:20px;}
-  .field label{display:block; font-size:16px; margin-bottom:7px;}
-  input[type=text]{
-    width:100%; padding:12px 14px; border:2.5px solid var(--ink); border-radius:16px 8px 16px 8px;
-    background:#fff; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; color:var(--ink); outline:none;
-  }
-  input[type=text]:focus{background:var(--yellow);}
+/* ---- fields / buttons ---- */
+.field{margin-bottom:20px;}
+.field label{display:block; font-size:16px; margin-bottom:7px;}
+input[type=text]{
+width:100%; padding:12px 14px; border:2.5px solid var(--ink); border-radius:16px 8px 16px 8px;
+background:#fff; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; color:var(--ink); outline:none;
+}
+input[type=text]:focus{background:var(--yellow);}
 
-  .btn{
-    appearance:none; cursor:pointer; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700;
-    border:2.5px solid var(--ink); border-radius:255px 20px 225px 20px/20px 225px 20px 255px;
-    padding:13px 20px; background:#fff; box-shadow:3px 3px 0 var(--ink);
-    transition:transform .12s ease, box-shadow .12s ease;
-  }
-  .btn:hover{transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink);}
-  .btn:active{transform:translate(0,0); box-shadow:1px 1px 0 var(--ink);}
-  .btn-primary{background:var(--yellow); width:100%;}
-  .btn-ghost{background:#fff;}
-  .btn-small{padding:8px 14px; font-size:14px;}
+.btn{
+appearance:none; cursor:pointer; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700;
+border:2.5px solid var(--ink); border-radius:255px 20px 225px 20px/20px 225px 20px 255px;
+padding:13px 20px; background:#fff; box-shadow:3px 3px 0 var(--ink);
+transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover{transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--ink);}
+.btn:active{transform:translate(0,0); box-shadow:1px 1px 0 var(--ink);}
+.btn-primary{background:var(--yellow); width:100%;}
+.btn-ghost{background:#fff;}
+.btn-small{padding:8px 14px; font-size:14px;}
 
-  .divider-row{display:flex; align-items:center; gap:10px; margin:32px 0 20px;}
-  .divider-row .line{flex:1; height:2px; background:repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 11px);}
-  .divider-row span{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; color:var(--ink-soft);}
+.divider-row{display:flex; align-items:center; gap:10px; margin:32px 0 20px;}
+.divider-row .line{flex:1; height:2px; background:repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 11px);}
+.divider-row span{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; color:var(--ink-soft);}
 
-  .code-box{display:flex; gap:8px;}
-  .code-box input{flex:1;}
-  .hint{font-size:14px; color:var(--ink-soft); margin-top:8px; line-height:1.5;}
+.code-box{display:flex; gap:8px;}
+.code-box input{flex:1;}
+.hint{font-size:14px; color:var(--ink-soft); margin-top:8px; line-height:1.5;}
 
-  /* ---- bracket ---- */
-  .bracket{display:flex; align-items:center; margin-bottom:24px;}
-  .bracket .dot-wrap{display:flex; align-items:center; flex:1;}
-  .bracket .dot{
-    width:26px;height:26px; border:2px solid var(--ink); background:#fff;
-    border-radius:50% 45% 55% 48%/48% 52% 45% 55%;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:12px; font-weight:700; flex:none;
-  }
-  .bracket .dot.done{background:var(--mint);}
-  .bracket .dot.current{background:var(--pink); box-shadow:2px 2px 0 var(--ink);}
-  .bracket .seg{flex:1; height:0; border-top:2px dashed var(--ink-soft); opacity:.5;}
-  .bracket .seg.done{border-top:2px dashed var(--ink); opacity:1;}
+/* ---- bracket ---- */
+.bracket{display:flex; align-items:center; margin-bottom:24px;}
+.bracket .dot-wrap{display:flex; align-items:center; flex:1;}
+.bracket .dot{
+width:26px;height:26px; border:2px solid var(--ink); background:#fff;
+border-radius:50% 45% 55% 48%/48% 52% 45% 55%;
+display:flex;align-items:center;justify-content:center;
+font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:12px; font-weight:700; flex:none;
+}
+.bracket .dot.done{background:var(--mint);}
+.bracket .dot.current{background:var(--pink); box-shadow:2px 2px 0 var(--ink);}
+.bracket .seg{flex:1; height:0; border-top:2px dashed var(--ink-soft); opacity:.5;}
+.bracket .seg.done{border-top:2px dashed var(--ink); opacity:1;}
 
-  .round-label{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700; color:var(--pink-d); margin-bottom:6px;}
-  .q-head{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
-  .q-icon-blob{
-    width:52px;height:52px; flex:none; display:flex;align-items:center;justify-content:center;
-    border:2.5px solid var(--ink); border-radius:60% 40% 55% 45%/45% 55% 40% 60%;
-  }
-  .q-icon-blob svg{width:30px;height:30px;}
-  .q-title{font-size:clamp(20px,4.6vw,25px); margin:0 0 3px; line-height:1.35;}
-  .q-sub{color:var(--ink-soft); font-size:15px; margin:0;}
+.round-label{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700; color:var(--pink-d); margin-bottom:6px;}
+.q-head{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
+.q-icon-blob{
+width:52px;height:52px; flex:none; display:flex;align-items:center;justify-content:center;
+border:2.5px solid var(--ink); border-radius:60% 40% 55% 45%/45% 55% 40% 60%;
+}
+.q-icon-blob svg{width:30px;height:30px;}
+.q-title{font-size:clamp(20px,4.6vw,25px); margin:0 0 3px; line-height:1.35;}
+.q-sub{color:var(--ink-soft); font-size:15px; margin:0;}
 
-  .matchup{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:16px;}
-  .vs-badge{
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-8deg);
-    width:50px;height:50px; background:var(--yellow); border:2.5px solid var(--ink);
-    border-radius:238px 16px 225px 30px/26px 225px 30px 238px;
-    display:flex;align-items:center;justify-content:center; z-index:2;
-    font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700; box-shadow:2px 2px 0 var(--ink);
-  }
-  .opt-card{
-    padding:24px 16px 20px; cursor:pointer; text-align:left; display:flex; flex-direction:column; gap:10px;
-    min-height:200px; width:100%; transition:transform .12s ease;
-  }
-  .opt-card:hover{transform:translateY(-3px) rotate(0deg) !important;}
-  .opt-card .top-row{display:flex; align-items:center; justify-content:space-between;}
-  .opt-card .tag{
-    font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:12px; font-weight:700; width:24px;height:24px;
-    border:1.5px solid var(--ink); border-radius:50%; display:flex;align-items:center;justify-content:center;
-  }
-  .opt-card .opt-icon{width:34px;height:34px;}
-  .opt-card .opt-label{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:16px; font-weight:700; line-height:1.5;}
-  .opt-card .opt-desc{font-size:14.5px; color:var(--ink-soft); line-height:1.55;}
+.matchup{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.vs-badge{
+position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-8deg);
+width:50px;height:50px; background:var(--yellow); border:2.5px solid var(--ink);
+border-radius:238px 16px 225px 30px/26px 225px 30px 238px;
+display:flex;align-items:center;justify-content:center; z-index:2;
+font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700; box-shadow:2px 2px 0 var(--ink);
+}
+.opt-card{
+padding:24px 16px 20px; cursor:pointer; text-align:left; display:flex; flex-direction:column; gap:10px;
+min-height:200px; width:100%; transition:transform .12s ease;
+}
+.opt-card:hover{transform:translateY(-3px) rotate(0deg) !important;}
+.opt-card .top-row{display:flex; align-items:center; justify-content:space-between;}
+.opt-card .tag{
+font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:12px; font-weight:700; width:24px;height:24px;
+border:1.5px solid var(--ink); border-radius:50%; display:flex;align-items:center;justify-content:center;
+}
+.opt-card .opt-icon{width:34px;height:34px;}
+.opt-card .opt-label{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:16px; font-weight:700; line-height:1.5;}
+.opt-card .opt-desc{font-size:14.5px; color:var(--ink-soft); line-height:1.55;}
 
-  @media (max-width:560px){
-    .matchup{grid-template-columns:1fr; gap:36px;}
-    .vs-badge{top:calc(50% - 12px);}
-  }
+@media (max-width:560px){
+.matchup{grid-template-columns:1fr; gap:36px;}
+.vs-badge{top:calc(50% - 12px);}
+}
 
-  /* ---- result ---- */
-  .result-hero{text-align:center; padding:34px 20px 26px; margin-bottom:22px; position:relative; overflow:visible;}
-  .result-hero .stk{position:absolute; width:26px;height:26px;}
-  .result-hero .stk.s1{top:6px; left:14px; transform:rotate(-15deg);}
-  .result-hero .stk.s2{top:10px; right:18px; transform:rotate(20deg);}
-  .result-hero .stk.s3{bottom:14px; left:22px; transform:rotate(10deg);}
-  .result-hero .mascot-big{width:72px;height:72px; margin-bottom:6px;}
-  .result-eyebrow{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700; color:var(--pink-d); margin-bottom:6px;}
-  .result-type{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:clamp(24px,7vw,32px); font-weight:700; margin:0 0 14px;}
-  .result-desc{font-size:16px; color:var(--ink); line-height:1.65; max-width:46ch; margin:0 auto;}
+/* ---- result ---- */
+.result-hero{text-align:center; padding:34px 20px 26px; margin-bottom:22px; position:relative; overflow:visible;}
+.result-hero .stk{position:absolute; width:26px;height:26px;}
+.result-hero .stk.s1{top:6px; left:14px; transform:rotate(-15deg);}
+.result-hero .stk.s2{top:10px; right:18px; transform:rotate(20deg);}
+.result-hero .stk.s3{bottom:14px; left:22px; transform:rotate(10deg);}
+.result-hero .mascot-big{width:72px;height:72px; margin-bottom:6px;}
+.result-eyebrow{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700; color:var(--pink-d); margin-bottom:6px;}
+.result-type{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:clamp(24px,7vw,32px); font-weight:700; margin:0 0 14px;}
+.result-desc{font-size:16px; color:var(--ink); line-height:1.65; max-width:46ch; margin:0 auto;}
 
-  .score-bars{padding:22px 20px; margin-bottom:20px;}
-  .score-bars h3{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700; margin:0 0 14px; color:var(--ink-soft);}
-  .bar-row{margin-bottom:14px;}
-  .bar-row:last-child{margin-bottom:0;}
-  .bar-row .bar-top{display:flex; justify-content:space-between; font-size:15px; margin-bottom:6px;}
-  .bar-row .bar-top .name{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700;}
-  .bar-row .bar-top .pct{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; color:var(--ink-soft); font-size:13px;}
-  .bar-track{height:12px; border:2px solid var(--ink); border-radius:20px; overflow:hidden; background:#fff;}
-  .bar-fill{height:100%; background:#EFEAD8; transition:width .8s cubic-bezier(.2,.8,.3,1);}
-  .bar-fill.deluxe{background:var(--blue-d);}
-  .bar-fill.hybrid{background:var(--yellow-d);}
-  .bar-fill.portable{background:var(--mint-d);}
+.score-bars{padding:22px 20px; margin-bottom:20px;}
+.score-bars h3{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700; margin:0 0 14px; color:var(--ink-soft);}
+.bar-row{margin-bottom:14px;}
+.bar-row:last-child{margin-bottom:0;}
+.bar-row .bar-top{display:flex; justify-content:space-between; font-size:15px; margin-bottom:6px;}
+.bar-row .bar-top .name{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; font-weight:700;}
+.bar-row .bar-top .pct{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; color:var(--ink-soft); font-size:13px;}
+.bar-track{height:12px; border:2px solid var(--ink); border-radius:20px; overflow:hidden; background:#fff;}
+.bar-fill{height:100%; background:#EFEAD8; transition:width .8s cubic-bezier(.2,.8,.3,1);}
+.bar-fill.deluxe{background:var(--blue-d);}
+.bar-fill.hybrid{background:var(--yellow-d);}
+.bar-fill.portable{background:var(--mint-d);}
 
-  .action-row{display:flex; gap:10px; margin-bottom:10px;}
-  .action-row .btn{flex:1;}
+.action-row{display:flex; gap:10px; margin-bottom:10px;}
+.action-row .btn{flex:1;}
 
-  .share-panel{padding:20px; margin-top:16px; background:var(--lav);}
-  .share-panel h4{margin:0 0 6px; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:16px; font-weight:700;}
-  .share-panel p{margin:0 0 14px; font-size:14.5px; color:var(--ink-soft); line-height:1.6;}
+.share-panel{padding:20px; margin-top:16px; background:var(--lav);}
+.share-panel h4{margin:0 0 6px; font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:16px; font-weight:700;}
+.share-panel p{margin:0 0 14px; font-size:14.5px; color:var(--ink-soft); line-height:1.6;}
 
-  .compare-wrap{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;}
-  .compare-card{padding:18px 14px; text-align:center;}
-  .compare-card .who{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; color:var(--ink-soft); margin-bottom:8px;}
-  .compare-card .ctype{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700;}
-  .compare-note{padding:16px 18px; font-size:15px; line-height:1.65; margin-bottom:22px; background:var(--mint);}
+.compare-wrap{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;}
+.compare-card{padding:18px 14px; text-align:center;}
+.compare-card .who{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:13px; color:var(--ink-soft); margin-bottom:8px;}
+.compare-card .ctype{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:14px; font-weight:700;}
+.compare-note{padding:16px 18px; font-size:15px; line-height:1.65; margin-bottom:22px; background:var(--mint);}
 
-  footer.foot{text-align:center; margin-top:36px; font-size:12px; color:var(--ink-soft); font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;}
+.proscons-section{margin-top:6px;}
+.proscons-title{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:16px; font-weight:700; margin:0 0 6px;}
+.proscons-sub{font-size:14px; color:var(--ink-soft); margin:0 0 16px; line-height:1.6;}
+.proscons-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:22px;}
+@media (min-width:640px){.proscons-grid{grid-template-columns:repeat(3,1fr);}}
+.proscons-card{padding:18px 16px;}
+.proscons-card .pc-title{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:15px; font-weight:700; display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:10px;}
+.proscons-card .pc-badge{font-size:11px; font-weight:700; padding:2px 9px; border:1.5px solid var(--ink); border-radius:999px; background:#fff;}
+.proscons-card .pc-badge.me{background:var(--pink);}
+.proscons-card .pc-badge.partner{background:var(--blue);}
+.proscons-card .pc-block{margin-top:10px;}
+.proscons-card .pc-label{font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif; font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:5px;}
+.proscons-card ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.6; color:var(--ink);}
+.proscons-card ul li{margin-bottom:3px;}
+
+footer.foot{text-align:center; margin-top:36px; font-size:12px; color:var(--ink-soft); font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <div class="brand">
-    <svg viewBox="0 0 64 64"><circle cx="32" cy="36" r="20" fill="#FFF6E0" stroke="var(--ink)" stroke-width="2.5"/><circle cx="24" cy="34" r="2" fill="var(--ink)"/><circle cx="40" cy="34" r="2" fill="var(--ink)"/><path d="M24 44 Q32 50 40 44" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><path d="M28 14 Q32 6 36 14" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="18" cy="40" rx="3" ry="2" fill="var(--pink)"/><ellipse cx="46" cy="40" rx="3" ry="2" fill="var(--pink)"/></svg>
-    <div class="brand-name">육아템 월드컵 · 유모차 편</div>
-  </div>
+<div class="brand">
+<svg viewBox="0 0 64 64"><circle cx="32" cy="36" r="20" fill="#FFF6E0" stroke="var(--ink)" stroke-width="2.5"/><circle cx="24" cy="34" r="2" fill="var(--ink)"/><circle cx="40" cy="34" r="2" fill="var(--ink)"/><path d="M24 44 Q32 50 40 44" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><path d="M28 14 Q32 6 36 14" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="18" cy="40" rx="3" ry="2" fill="var(--pink)"/><ellipse cx="46" cy="40" rx="3" ry="2" fill="var(--pink)"/></svg>
+<div class="brand-name">육아답 프로젝트 - 육아템 매치 (유모차 편)</div>
+</div>
 
-  <!-- START SCREEN -->
-  <section id="screen-start" class="screen active">
-    <span class="sticker-tag">✏️ 유모차 월드컵 OPEN!</span>
-    <h1>유모차 뭐 사지?<br><span class="hl">취향 월드컵</span>으로 골라보자</h1>
-    <p class="lede">디럭스? 절충형? 휴대용? 종류가 너무 많아서 머리 아팠다면 잘 왔어요. A vs B로 열 번만 고르면 나한테 잘 맞는 유모차가 짠! 하고 나와요.</p>
+<!-- START SCREEN -->
+<section id="screen-start" class="screen active">
+<span class="sticker-tag">✏️ 유모차 매치 OPEN!</span>
+<h1>유모차 뭐 사지?<br><span class="hl">취향 매치</span>로 골라보자</h1>
+<p class="lede">디럭스? 절충형? 휴대용? 종류가 너무 많아서 머리 아팠다면 잘 왔어요. A vs B로 열 번만 고르면 나한테 잘 맞는 유모차가 짠! 하고 나와요.</p>
 
-    <div class="field">
-      <label for="input-name">이름을 남겨볼까요? <span class="hint-inline">(안 써도 괜찮아요)</span></label>
-      <input type="text" id="input-name" placeholder="예: 민준맘, 서준이네">
-    </div>
+<div class="field">
+<label for="input-name">이름을 남겨볼까요? <span class="hint-inline">(안 써도 괜찮아요)</span></label>
+<input type="text" id="input-name" placeholder="예: 민준맘, 서준이네">
+</div>
 
-    <button class="btn btn-primary" onclick="startQuiz()">유모차 월드컵 하러 가기 →</button>
+<button class="btn btn-primary" onclick="startQuiz()">유모차 매치 하러 가기 →</button>
 
-    <div class="divider-row"><div class="line"></div><span>또는</span><div class="line"></div></div>
+<div class="divider-row"><div class="line"></div><span>또는</span><div class="line"></div></div>
 
-    <div class="field">
-      <label for="input-code-start">배우자 결과도 궁금하다면?</label>
-      <div class="code-box">
-        <input type="text" id="input-code-start" placeholder="받은 링크를 여기에 붙여넣기">
-        <button class="btn btn-ghost btn-small" onclick="viewSharedCode()">결과 보기</button>
-      </div>
-      <p class="hint" id="start-code-error"></p>
-    </div>
-  </section>
+<div class="field">
+<label for="input-code-start">배우자 결과도 궁금하다면?</label>
+<div class="code-box">
+<input type="text" id="input-code-start" placeholder="받은 링크를 여기에 붙여넣기">
+<button class="btn btn-ghost btn-small" onclick="viewSharedCode()">결과 보기</button>
+</div>
+<p class="hint" id="start-code-error"></p>
+</div>
+</section>
 
-  <!-- QUIZ SCREEN -->
-  <section id="screen-quiz" class="screen">
-    <div class="bracket" id="bracket"></div>
-    <div class="round-label" id="round-label"></div>
-    <div class="q-head">
-      <div class="q-icon-blob" id="q-icon-blob"></div>
-      <div>
-        <h2 class="q-title" id="q-title"></h2>
-        <p class="q-sub" id="q-sub"></p>
-      </div>
-    </div>
-    <div class="matchup">
-      <div class="vs-badge">VS</div>
-      <button class="opt-card sketch wob-1 tilt-1" id="opt-a" onclick="choose('a')">
-        <div class="top-row"><span class="tag">A</span><svg class="opt-icon" id="opt-a-icon" viewBox="0 0 64 64"></svg></div>
-        <span class="opt-label" id="opt-a-label"></span>
-        <span class="opt-desc" id="opt-a-desc"></span>
-      </button>
-      <button class="opt-card sketch wob-2 tilt-2" id="opt-b" onclick="choose('b')">
-        <div class="top-row"><span class="tag">B</span><svg class="opt-icon" id="opt-b-icon" viewBox="0 0 64 64"></svg></div>
-        <span class="opt-label" id="opt-b-label"></span>
-        <span class="opt-desc" id="opt-b-desc"></span>
-      </button>
-    </div>
-  </section>
+<!-- QUIZ SCREEN -->
+<section id="screen-quiz" class="screen">
+<div class="bracket" id="bracket"></div>
+<div class="round-label" id="round-label"></div>
+<div class="q-head">
+<div class="q-icon-blob" id="q-icon-blob"></div>
+<div>
+<h2 class="q-title" id="q-title"></h2>
+<p class="q-sub" id="q-sub"></p>
+</div>
+</div>
+<div class="matchup">
+<div class="vs-badge">VS</div>
+<button class="opt-card sketch wob-1 tilt-1" id="opt-a" onclick="choose('a')">
+<div class="top-row"><span class="tag">A</span><svg class="opt-icon" id="opt-a-icon" viewBox="0 0 64 64"></svg></div>
+<span class="opt-label" id="opt-a-label"></span>
+<span class="opt-desc" id="opt-a-desc"></span>
+</button>
+<button class="opt-card sketch wob-2 tilt-2" id="opt-b" onclick="choose('b')">
+<div class="top-row"><span class="tag">B</span><svg class="opt-icon" id="opt-b-icon" viewBox="0 0 64 64"></svg></div>
+<span class="opt-label" id="opt-b-label"></span>
+<span class="opt-desc" id="opt-b-desc"></span>
+</button>
+</div>
+</section>
 
-  <!-- RESULT SCREEN -->
-  <section id="screen-result" class="screen">
-    <div class="result-hero sketch wob-3 tilt-3">
-      <svg class="stk s1" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--yellow-d)" stroke="var(--ink)" stroke-width="1.5"/></svg>
-      <svg class="stk s2" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--pink)" stroke="var(--ink)" stroke-width="1.5"/></svg>
-      <svg class="stk s3" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--mint-d)" stroke="var(--ink)" stroke-width="1.5"/></svg>
-      <svg class="mascot-big" viewBox="0 0 64 64"><path d="M18 30 Q16 14 34 16 Q46 17 46 30" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><path d="M14 30 H48 Q50 30 49 34 L45 40 H20 L15 34 Q14 32 14 30 Z" fill="#FFF6E0" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/><circle cx="22" cy="48" r="6" fill="#fff" stroke="var(--ink)" stroke-width="3"/><circle cx="42" cy="48" r="6" fill="#fff" stroke="var(--ink)" stroke-width="3"/><path d="M46 30 L54 22" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/></svg>
-      <div class="result-eyebrow" id="result-eyebrow">champion</div>
-      <h2 class="result-type" id="result-type"></h2>
-      <p class="result-desc" id="result-desc"></p>
-    </div>
+<!-- RESULT SCREEN -->
+<section id="screen-result" class="screen">
+<div class="result-hero sketch wob-3 tilt-3">
+<svg class="stk s1" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--yellow-d)" stroke="var(--ink)" stroke-width="1.5"/></svg>
+<svg class="stk s2" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--pink)" stroke="var(--ink)" stroke-width="1.5"/></svg>
+<svg class="stk s3" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--mint-d)" stroke="var(--ink)" stroke-width="1.5"/></svg>
+<svg class="mascot-big" viewBox="0 0 64 64"><path d="M18 30 Q16 14 34 16 Q46 17 46 30" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><path d="M14 30 H48 Q50 30 49 34 L45 40 H20 L15 34 Q14 32 14 30 Z" fill="#FFF6E0" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/><circle cx="22" cy="48" r="6" fill="#fff" stroke="var(--ink)" stroke-width="3"/><circle cx="42" cy="48" r="6" fill="#fff" stroke="var(--ink)" stroke-width="3"/><path d="M46 30 L54 22" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/></svg>
+<div class="result-eyebrow" id="result-eyebrow">champion</div>
+<h2 class="result-type" id="result-type"></h2>
+<p class="result-desc" id="result-desc"></p>
+</div>
 
-    <div class="score-bars sketch wob-2 tilt-1">
-      <h3>두근두근, 얼마나 잘 맞을까?</h3>
-      <div id="bars"></div>
-    </div>
+<div class="score-bars sketch wob-2 tilt-1">
+<h3>두근두근, 얼마나 잘 맞을까?</h3>
+<div id="bars"></div>
+</div>
 
-    <div class="action-row">
-      <button class="btn btn-ghost" onclick="resetApp()">다시 해보기</button>
-      <button class="btn btn-primary" onclick="toggleShare()">배우자 결과랑 비교</button>
-    </div>
+<div class="action-row">
+<button class="btn btn-ghost" onclick="resetApp()">다시 해보기</button>
+<button class="btn btn-primary" onclick="toggleShare()">배우자 결과랑 비교</button>
+</div>
 
-    <div class="share-panel sketch wob-1" id="share-panel" style="display:none;">
-      <h4>내 결과 공유하기</h4>
-      <p>아래 링크를 복사해서 배우자에게 보내세요. 링크를 누르면 내 결과가 바로 보여요.</p>
-      <div class="code-box">
-        <input type="text" id="my-code" readonly>
-        <button class="btn btn-ghost btn-small" onclick="copyCode()">링크 복사</button>
-      </div>
-      <p class="hint" id="copy-msg"></p>
+<div class="share-panel sketch wob-1" id="share-panel" style="display:none;">
+<h4>내 결과 공유하기</h4>
+<p>아래 링크를 복사해서 배우자에게 보내세요. 링크를 누르면 내 결과가 바로 보여요.</p>
+<div class="code-box">
+<input type="text" id="my-code" readonly>
+<button class="btn btn-ghost btn-small" onclick="copyCode()">링크 복사</button>
+</div>
+<p class="hint" id="copy-msg"></p>
 
-      <div class="divider-row"><div class="line"></div><span>또는</span><div class="line"></div></div>
+<div class="divider-row"><div class="line"></div><span>또는</span><div class="line"></div></div>
 
-      <label style="display:block;font-size:16px;margin-bottom:7px;">배우자 결과도 비교해볼까요?</label>
-      <div class="code-box">
-        <input type="text" id="input-code-result" placeholder="배우자 링크를 붙여넣기">
-        <button class="btn btn-ghost btn-small" onclick="compareWithPartner()">비교</button>
-      </div>
-      <p class="hint" id="result-code-error"></p>
-    </div>
+<label style="display:block;font-size:16px;margin-bottom:7px;">배우자 결과도 비교해볼까요?</label>
+<div class="code-box">
+<input type="text" id="input-code-result" placeholder="배우자 링크를 붙여넣기">
+<button class="btn btn-ghost btn-small" onclick="compareWithPartner()">비교</button>
+</div>
+<p class="hint" id="result-code-error"></p>
+</div>
 
-    <div id="compare-section" style="display:none;">
-      <div class="compare-wrap" id="compare-wrap"></div>
-      <div class="compare-note sketch wob-2" id="compare-note"></div>
-    </div>
-  </section>
+<div id="compare-section" style="display:none;">
+<div class="compare-wrap" id="compare-wrap"></div>
+<div class="compare-note sketch wob-2" id="compare-note"></div>
+</div>
 
-  <footer class="foot">☁ 프로토타입 버전 · 데이터는 이 브라우저에만 임시 저장돼요 ☁</footer>
+<div id="pros-cons-section" class="proscons-section" style="display:none;">
+<h3 class="proscons-title">세 타입, 장단점도 같이 봐요</h3>
+<p class="proscons-sub">두 분 결과를 참고해서, 어떤 점이 더 중요한지 같이 이야기해보세요.</p>
+<div class="proscons-grid" id="proscons-grid"></div>
+</div>
+</section>
+
+<footer class="foot">☁ 프로토타입 버전 · 데이터는 이 브라우저에만 임시 저장돼요 ☁</footer>
 </div>
 
 <script>
 const S = 'stroke="var(--ink)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"';
 const ICONS = {
-  feet: `<path d="M18 22 Q12 24 13 32 Q14 40 20 40 Q26 40 25 32 Q24 24 18 22Z" ${S}/><path d="M42 40 Q36 42 37 50 Q38 58 44 58 Q50 58 49 50 Q48 42 42 40Z" ${S}/><circle cx="15" cy="14" r="1.6" fill="var(--ink)"/><circle cx="21" cy="12" r="1.6" fill="var(--ink)"/><circle cx="39" cy="32" r="1.6" fill="var(--ink)"/><circle cx="45" cy="30" r="1.6" fill="var(--ink)"/>`,
-  car: `<path d="M9 40 Q9 27 20 26 L26 17 Q28 15 32 15 L42 15 Q46 15 48 18 L52 26 Q59 27 59 38 L59 41 H9 Z" ${S}/><circle cx="20" cy="45" r="6" ${S}/><circle cx="46" cy="45" r="6" ${S}/>`,
-  moon: `<path d="M42 12 Q26 15 24 30 Q22 47 40 51 Q28 47 27 31 Q26 16 42 12Z" ${S}/><path d="M50 18 l2 5 l5 2 l-5 2 l-2 5 l-2-5 l-5-2 l5-2Z" ${S}/><circle cx="16" cy="42" r="1.8" fill="var(--ink)"/>`,
-  bag: `<path d="M14 26 H50 L47 53 Q47 55 45 55 H19 Q17 55 17 53Z" ${S}/><path d="M23 26 Q23 13 32 13 Q41 13 41 26" ${S}/>`,
-  house: `<path d="M11 32 L32 13 L53 32" ${S}/><path d="M18 30 V51 H46 V30" ${S}/><path d="M27 51 V37 H37 V51" ${S}/>`,
-  coin: `<ellipse cx="32" cy="22" rx="17" ry="9" ${S}/><path d="M15 22 V32 Q15 41 32 41 Q49 41 49 32 V22" ${S}/><path d="M15 27 Q15 36 32 36 Q49 36 49 27" ${S}/>`,
-  scale: `<path d="M32 9 V52" ${S}/><path d="M13 20 H51" ${S}/><path d="M13 20 L7 35 Q13 41 19 35Z" ${S}/><path d="M51 20 L45 35 Q51 41 57 35Z" ${S}/><path d="M23 55 H41" ${S}/>`,
-  fold: `<path d="M13 45 L26 18 L39 45 L52 18" ${S}/><path d="M13 45 H52" ${S}/>`,
+feet: `<path d="M18 22 Q12 24 13 32 Q14 40 20 40 Q26 40 25 32 Q24 24 18 22Z" ${S}/><path d="M42 40 Q36 42 37 50 Q38 58 44 58 Q50 58 49 50 Q48 42 42 40Z" ${S}/><circle cx="15" cy="14" r="1.6" fill="var(--ink)"/><circle cx="21" cy="12" r="1.6" fill="var(--ink)"/><circle cx="39" cy="32" r="1.6" fill="var(--ink)"/><circle cx="45" cy="30" r="1.6" fill="var(--ink)"/>`,
+car: `<path d="M9 40 Q9 27 20 26 L26 17 Q28 15 32 15 L42 15 Q46 15 48 18 L52 26 Q59 27 59 38 L59 41 H9 Z" ${S}/><circle cx="20" cy="45" r="6" ${S}/><circle cx="46" cy="45" r="6" ${S}/>`,
+moon: `<path d="M42 12 Q26 15 24 30 Q22 47 40 51 Q28 47 27 31 Q26 16 42 12Z" ${S}/><path d="M50 18 l2 5 l5 2 l-5 2 l-2 5 l-2-5 l-5-2 l5-2Z" ${S}/><circle cx="16" cy="42" r="1.8" fill="var(--ink)"/>`,
+bag: `<path d="M14 26 H50 L47 53 Q47 55 45 55 H19 Q17 55 17 53Z" ${S}/><path d="M23 26 Q23 13 32 13 Q41 13 41 26" ${S}/>`,
+house: `<path d="M11 32 L32 13 L53 32" ${S}/><path d="M18 30 V51 H46 V30" ${S}/><path d="M27 51 V37 H37 V51" ${S}/>`,
+coin: `<ellipse cx="32" cy="22" rx="17" ry="9" ${S}/><path d="M15 22 V32 Q15 41 32 41 Q49 41 49 32 V22" ${S}/><path d="M15 27 Q15 36 32 36 Q49 36 49 27" ${S}/>`,
+scale: `<path d="M32 9 V52" ${S}/><path d="M13 20 H51" ${S}/><path d="M13 20 L7 35 Q13 41 19 35Z" ${S}/><path d="M51 20 L45 35 Q51 41 57 35Z" ${S}/><path d="M23 55 H41" ${S}/>`,
+fold: `<path d="M13 45 L26 18 L39 45 L52 18" ${S}/><path d="M13 45 H52" ${S}/>`,
 };
 function iconSvg(name){ return ICONS[name] || ''; }
 
 const QUESTIONS = [
-  {
-    icon: 'feet',
-    title: '아기랑 외출, 얼마나 자주 해요?',
-    sub: '이건 어떤 쪽이에요?',
-    a: { label: '거의 매일 나가요', desc: '산책, 문센, 나들이까지 부지런히 다녀요', scores: { portable: 2, hybrid: 1 } },
-    b: { label: '주 1~2번 정도예요', desc: '집콕하는 날이 더 많은 편이에요', scores: { deluxe: 2 } }
-  },
-  {
-    icon: 'car',
-    title: '외출할 때 뭘 제일 많이 타요?',
-    sub: '평소처럼 편하게 골라봐요',
-    a: { label: '차를 타고 다녀요', desc: '트렁크에 넣었다 뺐다 할 일이 많아요', scores: { deluxe: 2, hybrid: 1 } },
-    b: { label: '걷거나 대중교통을 타요', desc: '지하철, 버스, 도보 이동이 많아요', scores: { portable: 3 } }
-  },
-  {
-    icon: 'moon',
-    title: '아기는 지금 몇 개월이에요?',
-    sub: '지금 상황에 가까운 쪽은?',
-    a: { label: '신생아 ~ 6개월이에요', desc: '아직 누워서 타는 시간이 많아요', scores: { deluxe: 3 } },
-    b: { label: '돌 전후, 잘 앉아요', desc: '앉아서 세상 구경하는 걸 좋아해요', scores: { hybrid: 2, portable: 1 } }
-  },
-  {
-    icon: 'bag',
-    title: '외출 짐, 얼마나 챙겨요?',
-    sub: '이건 진짜 현실 기준으로!',
-    a: { label: '짐이 꽤 많아요', desc: '수납 바구니가 넉넉해야 마음이 놓여요', scores: { deluxe: 2, hybrid: 2 } },
-    b: { label: '최소한만 챙겨요', desc: '가볍게 나가는 게 제일 편해요', scores: { portable: 3 } }
-  },
-  {
-    icon: 'house',
-    title: '집이나 차에 자리, 넉넉해요?',
-    sub: '보관할 자리, 있나요?',
-    a: { label: '자리 여유 있어요', desc: '조금 커도 보관할 곳은 있어요', scores: { deluxe: 2, hybrid: 1 } },
-    b: { label: '공간이 빠듯해요', desc: '계단이 있거나 트렁크가 작아요', scores: { portable: 3, hybrid: 1 } }
-  },
-  {
-    icon: 'coin',
-    title: '예산은 어느 정도로 생각해요?',
-    sub: '이건 솔직하게 골라봐요',
-    a: { label: '조금 여유 있게 볼게요', desc: '좋은 제품 하나로 오래 쓰고 싶어요', scores: { deluxe: 2, hybrid: 1 } },
-    b: { label: '가성비가 제일 중요해요', desc: '합리적인 가격이면 충분해요', scores: { portable: 2, hybrid: 1 } }
-  },
-  {
-    icon: 'scale',
-    title: '유모차에서 뭐가 더 중요해요?',
-    sub: '둘 중 하나만 고른다면?',
-    a: { label: '승차감과 안정감이 먼저', desc: '아이가 편하고 흔들림이 적어야 해요', scores: { deluxe: 3, hybrid: 1 } },
-    b: { label: '가볍고 다루기 쉬운 게 먼저', desc: '들고 옮기고 접기 편해야 해요', scores: { portable: 3 } }
-  },
-  {
-    icon: 'fold',
-    title: '누가 제일 자주 접고 펴요?',
-    sub: '실제로 쓰는 장면을 생각해봐요',
-    a: { label: '주로 제가 혼자 해요', desc: '한 손으로도 가볍게 접혀야 살 것 같아요', scores: { portable: 3 } },
-    b: { label: '가족이 번갈아 해요', desc: '무게보다는 기능이 더 중요해요', scores: { deluxe: 2, hybrid: 2 } }
-  },
-  {
-    icon: 'house',
-    title: '주로 어떤 길을 다녀요?',
-    sub: '자주 다니는 길은 어떤가요?',
-    a: { label: '울퉁불퉁한 길이 많아요', desc: '보도블록이나 흙길도 편하게 지나고 싶어요', scores: { deluxe: 3, hybrid: 1 } },
-    b: { label: '평평한 길과 실내가 많아요', desc: '마트나 쇼핑몰을 주로 다녀요', scores: { portable: 2, hybrid: 1 } }
-  },
-  {
-    icon: 'moon',
-    title: '유모차, 얼마나 오래 쓸 생각이에요?',
-    sub: '오래 쓸지, 가볍게 바꿀지!',
-    a: { label: '신생아 때부터 오래 쓸래요', desc: '튼튼하고 편한 제품 하나로 오래 가고 싶어요', scores: { deluxe: 3, hybrid: 1 } },
-    b: { label: '필요하면 바꿔도 괜찮아요', desc: '지금 필요한 가벼움과 휴대성이 우선이에요', scores: { portable: 2, hybrid: 2 } }
-  }
+{
+icon: 'feet',
+title: '아기랑 외출, 얼마나 자주 해요?',
+sub: '이건 어떤 쪽이에요?',
+a: { label: '거의 매일 나가요', desc: '산책, 문센, 나들이까지 부지런히 다녀요', scores: { portable: 2, hybrid: 1 } },
+b: { label: '주 1~2번 정도예요', desc: '집콕하는 날이 더 많은 편이에요', scores: { deluxe: 2 } }
+},
+{
+icon: 'car',
+title: '외출할 때 뭘 제일 많이 타요?',
+sub: '평소처럼 편하게 골라봐요',
+a: { label: '차를 타고 다녀요', desc: '트렁크에 넣었다 뺐다 할 일이 많아요', scores: { deluxe: 2, hybrid: 1 } },
+b: { label: '걷거나 대중교통을 타요', desc: '지하철, 버스, 도보 이동이 많아요', scores: { portable: 3 } }
+},
+{
+icon: 'moon',
+title: '아기는 지금 몇 개월이에요?',
+sub: '지금 상황에 가까운 쪽은?',
+a: { label: '신생아 ~ 6개월이에요', desc: '아직 누워서 타는 시간이 많아요', scores: { deluxe: 3 } },
+b: { label: '돌 전후, 잘 앉아요', desc: '앉아서 세상 구경하는 걸 좋아해요', scores: { hybrid: 2, portable: 1 } }
+},
+{
+icon: 'bag',
+title: '외출 짐, 얼마나 챙겨요?',
+sub: '이건 진짜 현실 기준으로!',
+a: { label: '짐이 꽤 많아요', desc: '수납 바구니가 넉넉해야 마음이 놓여요', scores: { deluxe: 2, hybrid: 2 } },
+b: { label: '최소한만 챙겨요', desc: '가볍게 나가는 게 제일 편해요', scores: { portable: 3 } }
+},
+{
+icon: 'house',
+title: '집이나 차에 자리, 넉넉해요?',
+sub: '보관할 자리, 있나요?',
+a: { label: '자리 여유 있어요', desc: '조금 커도 보관할 곳은 있어요', scores: { deluxe: 2, hybrid: 1 } },
+b: { label: '공간이 빠듯해요', desc: '계단이 있거나 트렁크가 작아요', scores: { portable: 3, hybrid: 1 } }
+},
+{
+icon: 'coin',
+title: '예산은 어느 정도로 생각해요?',
+sub: '이건 솔직하게 골라봐요',
+a: { label: '조금 여유 있게 볼게요', desc: '좋은 제품 하나로 오래 쓰고 싶어요', scores: { deluxe: 2, hybrid: 1 } },
+b: { label: '가성비가 제일 중요해요', desc: '합리적인 가격이면 충분해요', scores: { portable: 2, hybrid: 1 } }
+},
+{
+icon: 'scale',
+title: '유모차에서 뭐가 더 중요해요?',
+sub: '둘 중 하나만 고른다면?',
+a: { label: '승차감과 안정감이 먼저', desc: '아이가 편하고 흔들림이 적어야 해요', scores: { deluxe: 3, hybrid: 1 } },
+b: { label: '가볍고 다루기 쉬운 게 먼저', desc: '들고 옮기고 접기 편해야 해요', scores: { portable: 3 } }
+},
+{
+icon: 'fold',
+title: '누가 제일 자주 접고 펴요?',
+sub: '실제로 쓰는 장면을 생각해봐요',
+a: { label: '주로 제가 혼자 해요', desc: '한 손으로도 가볍게 접혀야 살 것 같아요', scores: { portable: 3 } },
+b: { label: '가족이 번갈아 해요', desc: '무게보다는 기능이 더 중요해요', scores: { deluxe: 2, hybrid: 2 } }
+},
+{
+icon: 'house',
+title: '주로 어떤 길을 다녀요?',
+sub: '자주 다니는 길은 어떤가요?',
+a: { label: '울퉁불퉁한 길이 많아요', desc: '보도블록이나 흙길도 편하게 지나고 싶어요', scores: { deluxe: 3, hybrid: 1 } },
+b: { label: '평평한 길과 실내가 많아요', desc: '마트나 쇼핑몰을 주로 다녀요', scores: { portable: 2, hybrid: 1 } }
+},
+{
+icon: 'moon',
+title: '유모차, 얼마나 오래 쓸 생각이에요?',
+sub: '오래 쓸지, 가볍게 바꿀지!',
+a: { label: '신생아 때부터 오래 쓸래요', desc: '튼튼하고 편한 제품 하나로 오래 가고 싶어요', scores: { deluxe: 3, hybrid: 1 } },
+b: { label: '필요하면 바꿔도 괜찮아요', desc: '지금 필요한 가벼움과 휴대성이 우선이에요', scores: { portable: 2, hybrid: 2 } }
+}
 ];
 
 const TYPE_NAME = { deluxe: '디럭스형 유모차', hybrid: '절충형 유모차', portable: '휴대용(경량) 유모차' };
 const TYPE_DESC = {
-  deluxe: '승차감 좋고 좌석도 넉넉한 든든한 타입이에요. 차로 다니는 일이 많고 집이나 트렁크에 자리 여유가 있다면 잘 맞아요.',
-  hybrid: '기능과 무게를 적당히 챙긴 밸런스 타입이에요. 도보, 대중교통, 자차를 골고루 쓰는 집에 무난하게 잘 맞아요.',
-  portable: '가볍고 접기 쉬워서 들고 다니기 편한 타입이에요. 외출이 잦고 걷거나 대중교통을 많이 탄다면 이쪽이에요.'
+deluxe: '승차감 좋고 좌석도 넉넉한 든든한 타입이에요. 차로 다니는 일이 많고 집이나 트렁크에 자리 여유가 있다면 잘 맞아요.',
+hybrid: '기능과 무게를 적당히 챙긴 밸런스 타입이에요. 도보, 대중교통, 자차를 골고루 쓰는 집에 무난하게 잘 맞아요.',
+portable: '가볍고 접기 쉬워서 들고 다니기 편한 타입이에요. 외출이 잦고 걷거나 대중교통을 많이 탄다면 이쪽이에요.'
 };
 const TYPE_BLOB_BG = { deluxe: 'var(--blue)', hybrid: 'var(--yellow)', portable: 'var(--mint)' };
+const TYPE_PROS_CONS = {
+deluxe: {
+pros: ['승차감과 주행 안정감이 좋아요', '좌석과 수납 공간이 넉넉해요', '신생아 시기부터 오래 쓰기 좋아요'],
+cons: ['무게가 무겁고 부피가 커요', '접고 펴는 게 상대적으로 번거로워요', '대중교통 이용 시 다소 불편할 수 있어요']
+},
+hybrid: {
+pros: ['무게와 기능의 균형이 잘 잡혀 있어요', '도보, 자차, 대중교통 모두 무난해요', '가격대가 비교적 합리적이에요'],
+cons: ['디럭스형만큼 승차감이 좋진 않아요', '휴대용만큼 가볍진 않아요', '수납 공간이 다소 아쉬울 수 있어요']
+},
+portable: {
+pros: ['가볍고 한 손으로도 접기 쉬워요', '휴대와 보관이 편해요', '외출과 이동이 잦을 때 편리해요'],
+cons: ['승차감과 완충력이 상대적으로 약해요', '수납 공간이 좁은 편이에요', '오래 사용하기엔 내구성이 아쉬울 수 있어요']
+}
+};
 
 let state = { name: '', round: 0, scores: { deluxe: 0, hybrid: 0, portable: 0 }, answers: [] };
 
 function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
+document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function startQuiz(){
-  state.name = document.getElementById('input-name').value.trim();
-  state.round = 0;
-  state.scores = { deluxe: 0, hybrid: 0, portable: 0 };
-  state.answers = [];
-  renderRound();
-  showScreen('screen-quiz');
+state.name = document.getElementById('input-name').value.trim();
+state.round = 0;
+state.scores = { deluxe: 0, hybrid: 0, portable: 0 };
+state.answers = [];
+renderRound();
+showScreen('screen-quiz');
 }
 
 function renderBracket(){
-  const wrap = document.getElementById('bracket');
-  wrap.innerHTML = '';
-  QUESTIONS.forEach((q, i) => {
-    const dotWrap = document.createElement('div');
-    dotWrap.className = 'dot-wrap';
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i < state.round ? ' done' : (i === state.round ? ' current' : ''));
-    dot.textContent = i + 1;
-    dotWrap.appendChild(dot);
-    if(i < QUESTIONS.length - 1){
-      const seg = document.createElement('div');
-      seg.className = 'seg' + (i < state.round ? ' done' : '');
-      dotWrap.appendChild(seg);
-    }
-    wrap.appendChild(dotWrap);
-  });
+const wrap = document.getElementById('bracket');
+wrap.innerHTML = '';
+QUESTIONS.forEach((q, i) => {
+const dotWrap = document.createElement('div');
+dotWrap.className = 'dot-wrap';
+const dot = document.createElement('div');
+dot.className = 'dot' + (i < state.round ? ' done' : (i === state.round ? ' current' : ''));
+dot.textContent = i + 1;
+dotWrap.appendChild(dot);
+if(i < QUESTIONS.length - 1){
+const seg = document.createElement('div');
+seg.className = 'seg' + (i < state.round ? ' done' : '');
+dotWrap.appendChild(seg);
+}
+wrap.appendChild(dotWrap);
+});
 }
 
 function renderRound(){
-  const q = QUESTIONS[state.round];
-  renderBracket();
-  document.getElementById('round-label').textContent = `유모차 월드컵 ${state.round + 1}라운드 / ${QUESTIONS.length}`;
-  document.getElementById('q-icon-blob').style.background = ['var(--pink)','var(--blue)','var(--mint)','var(--yellow)','var(--lav)'][state.round % 5];
-  document.getElementById('q-icon-blob').innerHTML = `<svg viewBox="0 0 64 64">${iconSvg(q.icon)}</svg>`;
-  document.getElementById('q-title').textContent = q.title;
-  document.getElementById('q-sub').textContent = q.sub;
-  document.getElementById('opt-a-label').textContent = q.a.label;
-  document.getElementById('opt-a-desc').textContent = q.a.desc;
-  document.getElementById('opt-b-label').textContent = q.b.label;
-  document.getElementById('opt-b-desc').textContent = q.b.desc;
-  document.getElementById('opt-a-icon').innerHTML = iconSvg(q.icon);
-  document.getElementById('opt-b-icon').innerHTML = iconSvg(q.icon);
+const q = QUESTIONS[state.round];
+renderBracket();
+document.getElementById('round-label').textContent = `유모차 매치 ${state.round + 1}라운드 / ${QUESTIONS.length}`;
+document.getElementById('q-icon-blob').style.background = ['var(--pink)','var(--blue)','var(--mint)','var(--yellow)','var(--lav)'][state.round % 5];
+document.getElementById('q-icon-blob').innerHTML = `<svg viewBox="0 0 64 64">${iconSvg(q.icon)}</svg>`;
+document.getElementById('q-title').textContent = q.title;
+document.getElementById('q-sub').textContent = q.sub;
+document.getElementById('opt-a-label').textContent = q.a.label;
+document.getElementById('opt-a-desc').textContent = q.a.desc;
+document.getElementById('opt-b-label').textContent = q.b.label;
+document.getElementById('opt-b-desc').textContent = q.b.desc;
+document.getElementById('opt-a-icon').innerHTML = iconSvg(q.icon);
+document.getElementById('opt-b-icon').innerHTML = iconSvg(q.icon);
 }
 
 function choose(side){
-  const q = QUESTIONS[state.round];
-  const picked = q[side];
-  state.answers.push({ round: state.round, side, label: picked.label });
-  Object.entries(picked.scores).forEach(([type, val]) => { state.scores[type] += val; });
-  state.round++;
-  if(state.round < QUESTIONS.length){ renderRound(); }
-  else { showResult(state.scores, state.name); }
+const q = QUESTIONS[state.round];
+const picked = q[side];
+state.answers.push({ round: state.round, side, label: picked.label });
+Object.entries(picked.scores).forEach(([type, val]) => { state.scores[type] += val; });
+state.round++;
+if(state.round < QUESTIONS.length){ renderRound(); }
+else { showResult(state.scores, state.name); }
 }
 
 function winnerOf(scores){ return Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0]; }
 
 function renderBars(containerId, scores){
-  const total = Object.values(scores).reduce((a,b)=>a+b,0) || 1;
-  const el = document.getElementById(containerId);
-  el.innerHTML = '';
-  ['deluxe','hybrid','portable'].forEach(type => {
-    const pct = Math.round((scores[type] / total) * 100);
-    const row = document.createElement('div');
-    row.className = 'bar-row';
-    row.innerHTML = `
-      <div class="bar-top"><span class="name">${TYPE_NAME[type]}</span><span class="pct">${pct}%</span></div>
-      <div class="bar-track"><div class="bar-fill ${type}" style="width:0%"></div></div>
-    `;
-    el.appendChild(row);
-    requestAnimationFrame(() => { row.querySelector('.bar-fill').style.width = pct + '%'; });
-  });
+const total = Object.values(scores).reduce((a,b)=>a+b,0) || 1;
+const el = document.getElementById(containerId);
+el.innerHTML = '';
+['deluxe','hybrid','portable'].forEach(type => {
+const pct = Math.round((scores[type] / total) * 100);
+const row = document.createElement('div');
+row.className = 'bar-row';
+row.innerHTML = `
+<div class="bar-top"><span class="name">${TYPE_NAME[type]}</span><span class="pct">${pct}%</span></div>
+<div class="bar-track"><div class="bar-fill ${type}" style="width:0%"></div></div>
+`;
+el.appendChild(row);
+requestAnimationFrame(() => { row.querySelector('.bar-fill').style.width = pct + '%'; });
+});
 }
 
 async function showResult(scores, name){
-  const win = winnerOf(scores);
-  document.getElementById('result-eyebrow').textContent = name ? `${name}님의 유모차 월드컵 결과` : '유모차 월드컵 결과';
-  document.getElementById('result-type').textContent = TYPE_NAME[win];
-  document.getElementById('result-desc').textContent = TYPE_DESC[win];
-  document.querySelector('.result-hero').style.background = TYPE_BLOB_BG[win] + '33';
-  renderBars('bars', scores);
-  document.getElementById('share-panel').style.display = 'none';
-  document.getElementById('compare-section').style.display = 'none';
-  document.getElementById('my-code').value = '링크 만드는 중...';
-  showScreen('screen-result');
-  try {
-    const response = await fetch('/api/save-result', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, scores })
-    });
-    if (!response.ok) throw new Error('save failed');
-    const data = await response.json();
-    document.getElementById('my-code').value = `${location.origin}${location.pathname}?result=${data.id}`;
-  } catch (error) {
-    document.getElementById('my-code').value = encodeResult(name, scores);
-    document.getElementById('copy-msg').textContent = '링크 저장 전이라 임시 코드를 보여드려요.';
-  }
+const win = winnerOf(scores);
+document.getElementById('result-eyebrow').textContent = name ? `${name}님의 유모차 매치 결과` : '유모차 매치 결과';
+document.getElementById('result-type').textContent = TYPE_NAME[win];
+document.getElementById('result-desc').textContent = TYPE_DESC[win];
+document.querySelector('.result-hero').style.background = TYPE_BLOB_BG[win] + '33';
+renderBars('bars', scores);
+document.getElementById('share-panel').style.display = 'none';
+document.getElementById('compare-section').style.display = 'none';
+document.getElementById('pros-cons-section').style.display = 'none';
+document.getElementById('my-code').value = '링크 만드는 중...';
+showScreen('screen-result');
+try {
+const response = await fetch('/api/save-result', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ name, scores })
+});
+if (!response.ok) throw new Error('save failed');
+const data = await response.json();
+document.getElementById('my-code').value = `${location.origin}${location.pathname}?result=${data.id}`;
+} catch (error) {
+document.getElementById('my-code').value = encodeResult(name, scores);
+document.getElementById('copy-msg').textContent = '링크 저장 전이라 임시 코드를 보여드려요.';
+}
 }
 
 function encodeResult(name, scores){
-  const payload = { n: name || '익명', s: scores, v: 1 };
-  return btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+const payload = { n: name || '익명', s: scores, v: 1 };
+return btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
 }
 function decodeResult(code){
-  const json = decodeURIComponent(escape(atob(code.trim())));
-  const payload = JSON.parse(json);
-  if(!payload.s) throw new Error('invalid');
-  return payload;
+const json = decodeURIComponent(escape(atob(code.trim())));
+const payload = JSON.parse(json);
+if(!payload.s) throw new Error('invalid');
+return payload;
 }
 
 function toggleShare(){
-  const panel = document.getElementById('share-panel');
-  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+const panel = document.getElementById('share-panel');
+panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
 }
 function copyCode(){
-  const input = document.getElementById('my-code');
-  input.select();
-  document.execCommand('copy');
-  document.getElementById('copy-msg').textContent = '복사했어요. 이제 배우자에게 보내면 돼요 💌';
+const input = document.getElementById('my-code');
+input.select();
+document.execCommand('copy');
+document.getElementById('copy-msg').textContent = '복사했어요. 이제 배우자에게 보내면 돼요 💌';
 }
 function viewSharedCode(){
-  const value = document.getElementById('input-code-start').value.trim();
-  const errEl = document.getElementById('start-code-error');
-  errEl.textContent = '';
-  if(!value){ errEl.textContent = '링크를 붙여넣어 주세요.'; return; }
-  loadSharedResult(value, errEl);
+const value = document.getElementById('input-code-start').value.trim();
+const errEl = document.getElementById('start-code-error');
+errEl.textContent = '';
+if(!value){ errEl.textContent = '링크를 붙여넣어 주세요.'; return; }
+loadSharedResult(value, errEl);
+}
+function renderProsCons(myWin, partnerWin, partnerName){
+const grid = document.getElementById('proscons-grid');
+const wobs = { deluxe: 'wob-1', hybrid: 'wob-2', portable: 'wob-3' };
+grid.innerHTML = '';
+['deluxe','hybrid','portable'].forEach(type => {
+const badges = [];
+if(type === myWin) badges.push(`<span class="pc-badge me">${state.name || '나'}</span>`);
+if(type === partnerWin) badges.push(`<span class="pc-badge partner">${partnerName || '배우자'}</span>`);
+const pc = TYPE_PROS_CONS[type];
+const card = document.createElement('div');
+card.className = `proscons-card sketch ${wobs[type]}`;
+card.innerHTML = `
+<div class="pc-title">${TYPE_NAME[type]} ${badges.join(' ')}</div>
+<div class="pc-block">
+<div class="pc-label">장점</div>
+<ul>${pc.pros.map(p => `<li>${p}</li>`).join('')}</ul>
+</div>
+<div class="pc-block">
+<div class="pc-label">단점</div>
+<ul>${pc.cons.map(c => `<li>${c}</li>`).join('')}</ul>
+</div>
+`;
+grid.appendChild(card);
+});
+document.getElementById('pros-cons-section').style.display = 'block';
 }
 async function compareWithPartner(){
-  const value = document.getElementById('input-code-result').value.trim();
-  const errEl = document.getElementById('result-code-error');
-  errEl.textContent = '';
-  if(!value){ errEl.textContent = '링크를 붙여넣어 주세요.'; return; }
-  let partner;
-  try { partner = await awaitSharedResult(value); }
-  catch(e){ errEl.textContent = '링크를 다시 확인해 주세요.'; return; }
-  if (!partner) return;
-  const myWin = winnerOf(state.scores);
-  const partnerWin = winnerOf(partner.s);
-  const wrap = document.getElementById('compare-wrap');
-  wrap.innerHTML = `
-    <div class="compare-card sketch wob-1"><div class="who">${state.name || '나'}</div><div class="ctype">${TYPE_NAME[myWin]}</div></div>
-    <div class="compare-card sketch wob-2"><div class="who">${partner.n}</div><div class="ctype">${TYPE_NAME[partnerWin]}</div></div>
-  `;
-  const note = document.getElementById('compare-note');
-  note.textContent = myWin === partnerWin
-    ? `두 분 다 ${TYPE_NAME[myWin]}를 골랐어요! 이 정도면 거의 결정 아닌가요? 🎉`
-    : `결과가 살짝 다르네요. 나는 ${TYPE_NAME[myWin]}, ${partner.n}님은 ${TYPE_NAME[partnerWin]} 쪽이에요. 외출 빈도랑 이동 수단부터 같이 얘기해보세요.`;
-  document.getElementById('compare-section').style.display = 'block';
+const value = document.getElementById('input-code-result').value.trim();
+const errEl = document.getElementById('result-code-error');
+errEl.textContent = '';
+if(!value){ errEl.textContent = '링크를 붙여넣어 주세요.'; return; }
+let partner;
+try { partner = await awaitSharedResult(value); }
+catch(e){ errEl.textContent = '링크를 다시 확인해 주세요.'; return; }
+if (!partner) return;
+const myWin = winnerOf(state.scores);
+const partnerWin = winnerOf(partner.s);
+const wrap = document.getElementById('compare-wrap');
+wrap.innerHTML = `
+<div class="compare-card sketch wob-1"><div class="who">${state.name || '나'}</div><div class="ctype">${TYPE_NAME[myWin]}</div></div>
+<div class="compare-card sketch wob-2"><div class="who">${partner.n}</div><div class="ctype">${TYPE_NAME[partnerWin]}</div></div>
+`;
+const note = document.getElementById('compare-note');
+note.textContent = myWin === partnerWin
+? `두 분 다 ${TYPE_NAME[myWin]}를 골랐어요! 이 정도면 거의 결정 아닌가요? 🎉 그래도 아래 장단점을 한 번 더 확인해보세요.`
+: `결과가 살짝 다르네요. 나는 ${TYPE_NAME[myWin]}, ${partner.n}님은 ${TYPE_NAME[partnerWin]} 쪽이에요. 아래 장단점을 같이 보면서 이야기해보세요.`;
+document.getElementById('compare-section').style.display = 'block';
+renderProsCons(myWin, partnerWin, partner.n);
 }
 
 function getResultId(value){
-  try { return new URL(value, location.href).searchParams.get('result'); }
-  catch(e){ return null; }
+try { return new URL(value, location.href).searchParams.get('result'); }
+catch(e){ return null; }
 }
 async function awaitSharedResult(value){
-  const id = getResultId(value);
-  if (!id) return decodeResult(value);
-  const response = await fetch(`/api/get-result?id=${encodeURIComponent(id)}`);
-  if (!response.ok) throw new Error('load failed');
-  const data = await response.json();
-  return { n: data.name || '익명', s: data.scores };
+const id = getResultId(value);
+if (!id) return decodeResult(value);
+const response = await fetch(`/api/get-result?id=${encodeURIComponent(id)}`);
+if (!response.ok) throw new Error('load failed');
+const data = await response.json();
+return { n: data.name || '익명', s: data.scores };
 }
 async function loadSharedResult(value, errEl){
-  try {
-    const payload = await awaitSharedResult(value);
-    showResult(payload.scores || payload.s, payload.name || payload.n);
-  } catch(e) {
-    errEl.textContent = '링크를 다시 확인해 주세요.';
-  }
+try {
+const payload = await awaitSharedResult(value);
+showResult(payload.scores || payload.s, payload.name || payload.n);
+} catch(e) {
+errEl.textContent = '링크를 다시 확인해 주세요.';
+}
 }
 function loadResultFromUrl(){
-  const id = new URLSearchParams(location.search).get('result');
-  if (!id) return;
-  loadSharedResult(location.href, document.getElementById('start-code-error'));
+const id = new URLSearchParams(location.search).get('result');
+if (!id) return;
+loadSharedResult(location.href, document.getElementById('start-code-error'));
 }
 function resetApp(){
-  document.getElementById('input-name').value = '';
-  document.getElementById('input-code-start').value = '';
-  document.getElementById('start-code-error').textContent = '';
-  showScreen('screen-start');
+document.getElementById('input-name').value = '';
+document.getElementById('input-code-start').value = '';
+document.getElementById('start-code-error').textContent = '';
+showScreen('screen-start');
 }
 loadResultFromUrl();
 </script>
